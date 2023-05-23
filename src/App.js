@@ -1,25 +1,26 @@
-import {BrowserRouter as Router,Routes,Route} from "react-router-dom"
-import {Toaster} from 'react-hot-toast'
-import Home from "./Components/Home";
-import Header from "./Components/Header";
-import Cart from "./Components/Cart";
+import React from "react";
+import Account from "./Components/Account";
+import Bonus from "./Components/Bonus";
+import Rewads from "./Components/Rewads";
 
-import "./style/App.scss"
-import "./style/Header.scss"
-import "./style/Home.scss"
-import "./style/Cart.scss"
-import "./style/mediaquary.scss"
+import "./style/App.scss";
+import "./style/Account.scss";
+import { useSelector } from "react-redux";
 
 function App() {
+  const amount = useSelector((state) => state.account.amount);
+  const points = useSelector((state) => state.bonus.points);
+
   return (
-    <Router>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
-      <Toaster />
-    </Router>
+    <div className="App">
+      <h4>App</h4>
+      <h3>Current Amount : {amount}</h3>
+      <h3>Total Bonus : {points}</h3>
+
+      <Account />
+      <Bonus />
+      <Rewads />
+    </div>
   );
 }
 
